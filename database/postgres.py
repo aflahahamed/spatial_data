@@ -14,8 +14,10 @@ CREATE TABLE features (
 );
 '''
 
+# Query used to insert the data
 INSERT_STATEMENT = 'INSERT INTO features (country,ISO_code,geom) VALUES (%s,%s, ST_SetSRID(ST_GeomFromGeoJSON(%s), 4326));'
 
+# Parse the data from geojson file and write to postgres
 def import_feature(cur,feature_data):
     if feature_data.get('type') == 'FeatureCollection':
         for feature in feature_data['features']:
@@ -29,7 +31,7 @@ def import_feature(cur,feature_data):
                 ISO_code = str(v)
         cur.execute(INSERT_STATEMENT, (country,ISO_code,geojson))
 
-
+# Gets the data from the folder and passes the geojson
 def insertDataInPostgres():
     logging.basicConfig(level=logging.DEBUG)
     con = psycopg2.connect(dbname="testing", user="testing", password="testing")
@@ -42,9 +44,6 @@ def insertDataInPostgres():
 
     with open('../geojson/mydata.json','r') as f:
         handle = json.loads(f.read())
-    # with handle:
-    # feature_data = json.load(handle)
-    # print(handle['features'])
     with con:
         with con.cursor() as cur:
             import_feature(cur, handle)

@@ -1,28 +1,20 @@
 from cmath import e
 import pika
 
+# Connect to host
 def connectToHost():
     try:
         parameters = pika.ConnectionParameters(host="localhost")
         return pika.BlockingConnection(parameters)
     except e: print('Connect to localhost encountered a problem')
 
+# Close connection if not required
 def closeConnection(connection):
     try:
         connection.close()
     except Exception as e: print('Error:' + e)
-    
-def send(body):
-    connection = connectToHost()
-    try:
-        channel = connection.channel()
-        channel.basic_publish(exchange='e.messenger',
-                                        routing_key= 'Hi',
-                                        body="App2: " + body)
-        closeConnection(connection)
         
-    except Exception as e : print('Error:' + e)
-        
+# Receive the message from queue
 def receive():
     connection = connectToHost()
     channel = connection.channel()

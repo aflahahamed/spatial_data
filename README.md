@@ -16,17 +16,23 @@ The code is written using the following packages:
 
 * To run the cron job, the details are as following:
   - go to the database folder and broker folder and run the docker-compose.yml files by running the command
-  docker-compose up
+  ```
+    docker-compose up
+  ```
   This will setup the posgres and rabbitmq container in local environment
 * Go to the app folder and run the main file using the following command:
-  python .\main.py
+```
+    python .\main.py
+ ```
   This will start the cronjob which will download the data and update it into postgres db
 * Go to the api folder and run the following command:
+```
   python -m uvicorn main:app --reload
-  This will run the api in localhost:8000
+```
+  This will run the api in `localhost:8000`
   To test the API Open postman application
   Put the following link
-  http://localhost:8000/country/create
+  `http://localhost:8000/country/create`
   Attach a JSON body to and send the POST request to create the data in the db like
   {
     "parameter" :{

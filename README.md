@@ -31,14 +31,14 @@ CREATE TABLE features (
 );
 ```
   This will setup the posgres and rabbitmq container in local environment
-* Go to the app folder and run the main file using the following command:
+  Go to the app folder and run the main file using the following command:
 ```
     python .\main.py
 ```
   This will start the cronjob which will download the data and update it into postgres db
   
 ## API
-* Go to the api folder and run the following command:
+  Go to the api folder and run the following command:
 ```
   python -m uvicorn main:app --reload
 ```

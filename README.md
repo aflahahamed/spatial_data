@@ -1,8 +1,7 @@
-### spatial_data
+# spatial_data
 This is a cron job implementation of postgres data updater and REST API for spatial data.
 
 ## Approach
-# Cron Job
 The code is written using the following packages:
 - Python             3.9.6
 - uvicorn            0.18.3
@@ -14,7 +13,8 @@ The code is written using the following packages:
 - requests           2.28.1
 - SQLAlchemy         1.4.41
 - Docker compose
-
+- 
+## Cron Job
 * To run the cron job, the details are as following:
   go to the database folder and broker folder and run the docker-compose.yml files by running the command
 ```
@@ -37,7 +37,8 @@ CREATE TABLE features (
     python .\main.py
 ```
   This will start the cronjob which will download the data and update it into postgres db
-# API
+  
+## API
 * Go to the api folder and run the following command:
 ```
   python -m uvicorn main:app --reload
@@ -58,7 +59,7 @@ CREATE TABLE features (
   * Delete
     Put the following link
   `http://localhost:8000/country/delete`
-  Attach a JSON body to and send the `DELETE` request to create the data in the db lik
+  Attach a JSON body to and send the `DELETE` request to create the data in the db like
   ```
   {
     "parameter":{
@@ -69,7 +70,7 @@ CREATE TABLE features (
   * Update
   Put the following link
   ` http://localhost:8000/country/update`
-  Attach a JSON body to and send the `DELETE` request to create the data in the db lik
+  Attach a JSON body to and send the `DELETE` request to create the data in the db like
   ```
   {
     "parameter":{
@@ -103,6 +104,3 @@ CREATE TABLE features (
     }
 }
   ```
-  
-
-

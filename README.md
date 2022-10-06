@@ -69,7 +69,7 @@ CREATE TABLE features (
   * Update
   Put the following link
   ` http://localhost:8000/country/update`
-  Attach a JSON body to and send the `DELETE` request to create the data in the db like
+  Attach a JSON body to and send the `PATCH` request to create the data in the db like
   ```
   {
     "parameter":{

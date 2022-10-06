@@ -13,7 +13,6 @@ The code is written using the following packages:
 - requests           2.28.1
 - SQLAlchemy         1.4.41
 - Docker compose
-- 
 ## Cron Job
 * To run the cron job, the details are as following:
   go to the database folder and broker folder and run the docker-compose.yml files by running the command

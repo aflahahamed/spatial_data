@@ -25,35 +25,33 @@ logging.basicConfig(filename="newfile.log",
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
 
-def main():
-    
-    # Downloads the data from website and stores it in geojson folder
-    def update_data():
-        print("starting update job")
-        data_url = "https://datahub.io/core/geo-countries/r/countries.geojson"
-        response = request.urlopen(data_url)
-        content = response.read()
-        data =json.loads(content.decode("utf8"))
-        with open('../geojson/mydata.json', 'w') as f:
-            json.dump(data, f)
-        print("Done updating data")
-        
-        
-    print("starting main job")
-    msg = "Start the file loader"
-    sender.send(msg)
-    received_msg = receiver.receive()
-    # after specified time interval the data will be downloaded
-    if (received_msg):
-        update_data()
-        
-    # function to update the postgres database
-    print("Inserting Data into postgres")
-    postgres.insertDataInPostgres()
-    print("Done inserting data into postgres")
-    
-main()
-schedule.every(10).minutes.do(main)
-
 while True:
-    schedule.run_pending()
+    def main():
+        def update_data():
+            print("starting update job")
+            data_url = "https://datahub.io/core/geo-countries/r/countries.geojson"
+            response = request.urlopen(data_url)
+            content = response.read()
+            data =json.loads(content.decode("utf8"))
+            with open('../geojson/mydata.json', 'w') as f:
+                json.dump(data, f)
+            print("Done updating data")
+            
+            
+        print("starting main job")
+        msg = "Start the file loader"
+        sender.send(msg)
+        received_msg = receiver.receive()
+        # after specified time interval the data will be downloaded
+        if (received_msg):
+            update_data()
+            
+        # function to update the postgres database
+        print("Inserting Data into postgres")
+        postgres.insertDataInPostgres()
+        print("Done inserting data into postgres")
+    
+    
+    main() #Execute the function
+    print("Waiting 10 minutes")
+    time.sleep(600)

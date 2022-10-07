@@ -18,7 +18,6 @@ def closeConnection(connection):
 def receive():
     connection = connectToHost()
     channel = connection.channel()
-    print("inside receiver")
     channel.queue_declare(queue='q.messenger',
                             passive= False,
                             durable= True,

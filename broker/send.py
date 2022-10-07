@@ -15,7 +15,6 @@ def closeConnection(connection):
 
 # Send the body to exchange
 def send(body):
-    print("inside sender")
     connection = connectToHost()
     try:
         channel = connection.channel()

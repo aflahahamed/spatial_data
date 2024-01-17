@@ -35,7 +35,7 @@ CREATE TABLE features (
 ```
     python .\main.py
 ```
-  This will start the cronjob which will download the data and update it into postgres db and craete a copy in geojson folder
+  This will start the cronjob which will download the data and update it into postgres db and create a copy in geojson folder
   
 ## API
   Go to the api folder and run the following command:
